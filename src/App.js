@@ -27,9 +27,9 @@ class App extends React.Component {
         this.pageSizeSelectorChange = this.pageSizeSelectorChange.bind(this);
     };
 
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     return nextState.currentPage !== this.state.currentPage;
-    // };
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextState.currentPage !== this.state.currentPage;
+    };
 
     pageSelectorChange(event) {
         this.setState({ 'page': event.target.value });
@@ -72,12 +72,21 @@ class App extends React.Component {
                     />
                 </div>
                 <div className="App-intro">
-                    {this.getCards()}
+                    {/* {this.getCards()} */}
+                    <CardList currentPage={this.state.currentPage} />
                 </div>
             </div>
         );
     };
 }
+
+function CardList(props) {
+    const cards = props.currentPage.map(function (photo) {
+        return <Card key={photo.id.toString()} data={photo} />
+    });
+
+    return <div>{cards}</div>;
+};
 
 // Typechecking
 // App.propTypes = {};
