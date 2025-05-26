@@ -1,7 +1,7 @@
 // This is the entry point of our app (not a component)
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
@@ -42,7 +42,9 @@ import registerServiceWorker from './registerServiceWorker';
 const url = "https://api.flickr.com/services/rest/?&method=flickr.people.getPublicPhotos&api_key=bbe6aa739ed8d4f2e922193fa6ebe4c5&format=json&user_id=36587311@N08&per_page=100";
 
 jsonp(url, function (data) {
-    ReactDOM.render(<App photos={data.photos.photo} />, document.getElementById('root'));
+    const container = document.getElementById('root');
+    const root = createRoot(container);
+    root.render(<App photos={data.photos.photo} />);
 });
 
 function jsonp(url, callback) {
