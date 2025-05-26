@@ -5,7 +5,7 @@ import './App.css';
 
 // import child component
 import Card from './Card';
-import Actionbar from './Actionbar'
+import Actionbar from './Actionbar';
 
 class App extends React.Component {
     constructor(props) {
@@ -86,6 +86,11 @@ function CardList(props) {
     });
 
     return <div>{cards}</div>;
+};
+
+// Default props
+App.defaultProps = {
+    photos: []
 };
 
 // Typechecking
